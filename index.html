@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1e2928" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Old City Hub" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="description" content="Old City Portal Hub for sales, mandates, alerts, and team operations." />
+  <title>Old City Portal Hub</title>
+  <link rel="manifest" href="./site.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+  <link rel="apple-touch-icon" href="./icon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div>
+        <p class="eyebrow">Old City</p>
+        <h1>Portal Hub</h1>
+        <p class="sidebar-copy">
+          A central workspace for tracking portal activity, sales opportunities, mandates, and team action items.
+        </p>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Primary">
+        <a href="#overview">Overview</a>
+        <a href="#sales-hub">Sales Hub</a>
+        <a href="#mandates">Mandates</a>
+        <a href="#portal-feed">Portal Feed</a>
+        <a href="#team-board">Team Board</a>
+      </nav>
+
+      <section class="sidebar-card">
+        <p class="sidebar-label">Integration status</p>
+        <strong>Mock mode active</strong>
+        <p>
+          Replace the seeded data inside <code>portalApi</code> once you receive real portal endpoints.
+        </p>
+      </section>
+    </aside>
+
+    <main class="main-content">
+      <header class="hero" id="overview">
+        <div>
+          <p class="eyebrow">Operations cockpit</p>
+          <h2>Keep Old City teams aligned on every account, mandate, and portal update.</h2>
+          <p class="hero-copy">
+            This mobile-ready starter app organizes the information your internship team described into one dashboard that is easy to demo now and easy to connect later.
+          </p>
+        </div>
+
+        <div class="hero-actions">
+          <button id="refreshButton" class="primary-btn">Refresh data</button>
+          <span id="lastUpdated" class="status-pill">Loading portal data...</span>
+          <span id="installHint" class="install-hint">On iPhone: Share then Add to Home Screen. On Android: browser menu then Install App.</span>
+        </div>
+      </header>
+
+      <section class="stats-grid" id="statsGrid" aria-label="Key metrics"></section>
+
+      <section class="panel panel-wide" id="sales-hub">
+        <div class="panel-header mobile-stack">
+          <div>
+            <p class="eyebrow">Pipeline</p>
+            <h3>Sales Hub</h3>
+          </div>
+          <label class="filter-chip">
+            <span>Region</span>
+            <select id="regionFilter">
+              <option value="all">All regions</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Account</th>
+                <th>Stage</th>
+                <th>Value</th>
+                <th>Owner</th>
+                <th>Region</th>
+                <th>Next step</th>
+              </tr>
+            </thead>
+            <tbody id="salesTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel" id="mandates">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Compliance</p>
+              <h3>Mandates Tracker</h3>
+            </div>
+          </div>
+          <div id="mandatesList" class="stack-list"></div>
+        </section>
+
+        <section class="panel" id="portal-feed">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Source activity</p>
+              <h3>Portal Feed</h3>
+            </div>
+          </div>
+          <div id="portalFeed" class="stack-list"></div>
+        </section>
+      </div>
+
+      <section class="panel panel-wide" id="team-board">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Execution</p>
+            <h3>Team Board</h3>
+          </div>
+        </div>
+
+        <div class="board-grid" id="teamBoard"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
