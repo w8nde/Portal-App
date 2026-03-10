@@ -14,6 +14,7 @@
 
 * {
   box-sizing: border-box;
+  min-width: 0;
 }
 
 html {
@@ -23,6 +24,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   font-family: "Manrope", sans-serif;
   color: var(--ink);
   background:
@@ -40,6 +42,8 @@ select {
   display: grid;
   grid-template-columns: 300px 1fr;
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
 }
 
 .sidebar {
@@ -54,7 +58,8 @@ select {
 
 .sidebar h1,
 .hero h2,
-.panel h3 {
+.panel h3,
+.sales-card h4 {
   font-family: "Space Grotesk", sans-serif;
   margin: 0;
 }
@@ -64,6 +69,7 @@ select {
 .sidebar-card p,
 .status-pill,
 .install-hint,
+.sales-card p,
 td,
 th {
   line-height: 1.5;
@@ -94,6 +100,7 @@ th {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.04);
+  white-space: nowrap;
 }
 
 .sidebar-card {
@@ -110,6 +117,8 @@ th {
 }
 
 .main-content {
+  width: 100%;
+  max-width: 100%;
   padding: 32px;
   padding-bottom: calc(32px + env(safe-area-inset-bottom));
 }
@@ -229,6 +238,37 @@ th {
   background: transparent;
 }
 
+.sales-cards {
+  display: none;
+}
+
+.sales-card {
+  padding: 16px;
+  border-radius: 18px;
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+}
+
+.sales-card-top,
+.sales-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sales-meta {
+  margin-top: 12px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.sales-card p {
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+
 .table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -338,6 +378,7 @@ th {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   margin-bottom: 14px;
 }
 
@@ -381,6 +422,7 @@ code {
 
 @media (max-width: 720px) {
   body {
+    font-size: 17px;
     background:
       radial-gradient(circle at top, rgba(177, 77, 40, 0.16), transparent 24%),
       linear-gradient(180deg, #efe7d8, var(--bg));
@@ -390,10 +432,15 @@ code {
     position: sticky;
     top: 0;
     z-index: 10;
-    padding: calc(18px + env(safe-area-inset-top)) 18px 18px;
-    gap: 18px;
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 24px;
+    width: 100%;
+    padding: calc(16px + env(safe-area-inset-top)) 14px 14px;
+    gap: 14px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+  }
+
+  .sidebar h1 {
+    font-size: 1.8rem;
   }
 
   .sidebar-copy,
@@ -402,38 +449,63 @@ code {
   }
 
   .sidebar-nav {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
     gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .sidebar-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .sidebar-nav a {
+    flex: 0 0 auto;
     text-align: center;
-    font-size: 0.9rem;
-    padding: 10px 12px;
+    font-size: 0.98rem;
+    font-weight: 700;
+    padding: 11px 14px;
   }
 
   .main-content {
-    padding: 18px;
-    padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    padding: 14px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
   }
 
   .hero,
   .panel,
   .stat-card {
-    border-radius: 22px;
+    border-radius: 20px;
   }
 
   .hero {
-    padding: 20px;
+    padding: 18px;
   }
 
   .hero h2 {
     font-size: 2rem;
+    line-height: 1.08;
+  }
+
+  .hero-copy,
+  .install-hint,
+  .status-pill,
+  .list-card p,
+  .task-card p,
+  .sales-card p,
+  .sales-meta {
+    font-size: 1rem;
+  }
+
+  .eyebrow {
+    font-size: 0.82rem;
   }
 
   .mobile-stack,
-  .panel-header {
+  .panel-header,
+  .sales-card-top,
+  .column-header {
     align-items: start;
     flex-direction: column;
   }
@@ -441,31 +513,85 @@ code {
   .hero-actions,
   .filter-chip {
     width: 100%;
+    max-width: none;
+  }
+
+  .primary-btn {
+    padding: 16px 18px;
+    font-size: 1rem;
   }
 
   .filter-chip {
     justify-content: space-between;
+    padding: 12px 14px;
+    font-size: 1rem;
   }
 
   .filter-chip select {
-    width: 100%;
-    text-align: right;
+    width: auto;
+    max-width: 100%;
+    font-size: 1rem;
   }
 
   .stats-grid {
-    gap: 14px;
+    gap: 12px;
+    margin-top: 18px;
   }
 
   .stat-card {
     padding: 18px;
   }
 
+  .stat-card .value {
+    font-size: 2rem;
+  }
+
+  .stat-card .delta,
+  .stat-card p {
+    font-size: 1rem;
+  }
+
   .panel {
-    margin-top: 18px;
+    margin-top: 16px;
     padding: 18px;
   }
 
+  .panel h3,
+  .sales-card h4,
+  .list-card h4,
+  .board-column h4,
+  .task-card h5 {
+    font-size: 1.2rem;
+  }
+
+  .sales-cards {
+    display: grid;
+    gap: 14px;
+  }
+
+  .sales-card {
+    padding: 18px;
+  }
+
+  .table-wrap {
+    display: none;
+  }
+
+  .tag-row,
+  .sales-meta {
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 0.92rem;
+    padding: 7px 11px;
+  }
+
   .board-column {
+    padding: 16px;
+  }
+
+  .task-card {
     padding: 16px;
   }
 }
